@@ -8,7 +8,7 @@ const city = ref('Paris')
 const weatherInfo =  ref(null)
 
 function getWeather() {
-  fetch(`${BASE_URL}?q=${city.value}&appid=${API_KEY}`)
+  fetch(`${BASE_URL}?q=${city.value}&units=metric&appid=${API_KEY}`)
   .then((responce) => responce.json())
   .then((data) => weatherInfo.value = data)
 }
@@ -32,7 +32,8 @@ onMounted(getWeather)
                       @keyup.enter="getWeather"
                       >
                   </div>
-                 <WeatherSummary/>
+                 <WeatherSummary :weatherInfo="weatherInfo"/>
+              
                 </div>
               </section>
               <section class="section section-right">
